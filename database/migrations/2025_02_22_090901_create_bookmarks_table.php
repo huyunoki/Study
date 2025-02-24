@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-           
-            $table->string('title');
-            $table->string('body');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
+            $table->unique(['user_id', 'place_id']); // 同じ投稿の二重ブックマークを防ぐ
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('bookmarks');
     }
 };
