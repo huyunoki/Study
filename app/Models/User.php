@@ -17,6 +17,11 @@ class User extends Authenticatable
         return $this->hasMany(Place::class, 'user_id'); // ✅ User は複数の Place を持つ
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class, 'user_id');
+    }
+
     protected static function boot()
     {
         parent::boot();

@@ -25,6 +25,15 @@ class PlaceController extends Controller
         return view('place.create');
     }
 
+    public function store(Request $repuest, Place $place)
+    {
+        // dd($repuest);
+        $input = $repuest['place'];
+        $place->user_id = Auth::id();
+        $place->fill($input)->save();
+        return redirect('/place');
+    }
+
     public function show($id)
     {
 

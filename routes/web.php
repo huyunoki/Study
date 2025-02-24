@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/places/create', [PlaceController::class, 'create']);
+    Route::post('/places/store', [PlaceController::class, 'store']);
     Route::get('/places/{id}', [PlaceController::class, 'show'])->name('markdown.show');
 });
 
