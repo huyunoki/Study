@@ -10,7 +10,13 @@ class Place extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
+        'user_id',
+        'category_id',
+        'title',
+        'body',
+        'study_date',
+        'study_time',
+        'created_at',
+        'updated_at',
     ];
 }

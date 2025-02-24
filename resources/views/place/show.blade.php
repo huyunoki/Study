@@ -7,14 +7,12 @@
 </head>
 
 <body>
-  <p>aaaS</p>
   <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold">{{ $place->name }}</h1>
+
     <div class="mt-4 prose">
-      {!! markdownToHtml($place->description) !!}
+      {!! markdownToHtml($place->body) !!}
     </div>
   </div>
-  <p>aaaS</p>
 </body>
 
 </html>
