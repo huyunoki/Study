@@ -9,6 +9,11 @@ class Bookmark extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'place_id',
+    ];
+
     // ブックマークをしたユーザー (多対1)
     public function user()
     {
