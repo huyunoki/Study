@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/places/{id}/edit',[PlaceController::class,'edit']);
     Route::put('/places/{id}/update',[PlaceController::class,'update']);
     Route::delete('/places/{id}/delete',[PlaceController::class,'delete']);
+    
+
 
     Route::post('/places/{id}/bookmark', [BookmarkController::class, 'store']);
     Route::delete('/places/{id}/bookmark', [BookmarkController::class, 'destroy']);

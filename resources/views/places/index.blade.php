@@ -10,20 +10,22 @@
 
     <!-- フィルター & 並び替え -->
     <div class="flex flex-wrap justify-between items-center mt-2 bg-gray-100 p-2 rounded">
-      <form method="GET" action="#" class="flex flex-wrap space-x-1">
+      <form method="GET" action="" class="flex flex-wrap space-x-1">
         <!-- カテゴリーフィルター -->
         <select name="category" class="border px-2 py-1 rounded bg-white text-sm">
           <option value="">📂 すべて</option>
-          <option value="1">プログラミング</option>
-          <option value="2">デザイン</option>
-          <option value="3">ライフスタイル</option>
+          
+        
+        @foreach($categorys as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
         </select>
 
         <!-- 並び替えオプション -->
         <select name="sort" class="border px-2 py-1 rounded bg-white text-sm">
-          <option value="latest">📅 最新順</option>
-          <option value="oldest">📅 古い順</option>
-          <option value="title">🔤 タイトル順</option>
+          <option value="1">📅 最新順</option>
+          <option value="2">📅 古い順</option>
+          <option value="3">🔤 タイトル順</option>
         </select>
 
         <button type="submit" class="bg-blue-500 text-black px-3 py-1 text-sm rounded hover:bg-blue-600 transition">
@@ -98,4 +100,5 @@
       <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">次へ ▶️</button>
     </div>
   </div>
+
 </x-app-layout>
