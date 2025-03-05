@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookMarkController;
 
 /*
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/places/{id}/update',[PlaceController::class,'update']);
     Route::delete('/places/{id}/delete',[PlaceController::class,'delete']);
     
-
+    Route::post('place/category',[CategoryController::class,'store'])->name('categories.store');
 
     Route::post('/places/{id}/bookmark', [BookmarkController::class, 'store']);
     Route::delete('/places/{id}/bookmark', [BookmarkController::class, 'destroy']);

@@ -14,4 +14,9 @@ class Category extends Model
     {
         return $this->hasMany(Place::class, 'category_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
