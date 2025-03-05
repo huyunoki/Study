@@ -14,27 +14,30 @@ use League\CommonMark\CommonMarkConverter;
 class PlaceController extends Controller
 {
 
-    public function index(Place $place,Bookmark $bookmark,Category $category,Request $request)
-    {
-        $user = \Auth::user();
-        $places = $user->places()->get();
-        $categorys=$category->get();
+    public function index(Place $place, Bookmark $bookmark, Category $category, Request $request)
+{
+    $user = \Auth::user();
+    
+    // ログインユーザーの投稿のみ取得
+    $query = $user->places();
+    dd($request);
 
-        // ユーザーがブックマークしている place_id のリストを取得
-        $exists = Bookmark::where('user_id', $user->id)->pluck('place_id')->toArray();
+    // ユーザーがブックマークしている place_id のリストを取得
+    $exists = Bookmark::where('user_id', $user->id)->pluck('place_id')->toArray();
 
-        // index画面の検索時にgetメソッドで渡されるqueryを受け取る
-        $filter = $request->query('category');
-        $sort = $request->query('sort');
+    // index画面の検索時にgetメソッドで渡されるqueryを受け取る
+    $filter = $request->query('category');
+    $sort = $request->query('sort');
 
-        // クエリのベース
-        $query = Place::query();
+    // カテゴリでフィルタリング
+    if (!empty($filter)) {
+        $query->where('category_id', $filter);
+    }
 
-        // カテゴリでフィルタリング（すべての時はクエリがnullで送られてくるため）
-        if (!empty($filter)) {
-            $query->where('category_id', $filter);
-        }
-
+    // ソート処理
+    if (empty($sort)) {
+        $query->orderBy('created_at', 'desc'); // デフォルトを最新順
+    } else {
         switch ($sort) {
             case "1":
                 $query->orderBy('created_at', 'desc'); // 最新順
@@ -46,16 +49,18 @@ class PlaceController extends Controller
                 $query->orderBy('title', 'asc'); // タイトル順
                 break;
         }
-
-        // クエリ実行
-        $places = $query->get();
-
-        // カテゴリリストを取得（フォーム用）
-        $filter = Category::all();
-
-        
-        return view('places.index', compact('places','exists','categorys'));
     }
+
+
+    // クエリ実行（ログインユーザーの投稿のみにフィルター適用）
+    $places = $query->get();
+
+    // カテゴリリストを取得（フォーム用）
+    $categorys = Category::all();
+
+    return view('places.index', compact('places', 'exists', 'categorys'));
+}
+
 
 
     public function create()
