@@ -14,11 +14,10 @@
         <!-- カテゴリーフィルター -->
         <select name="category" class="border px-2 py-1 rounded bg-white text-sm">
           <option value="">📂 すべて</option>
-          
         
-        @foreach($categorys as $category)
-        <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
+          @foreach($categories as $category)
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach
         </select>
 
         <!-- 並び替えオプション -->

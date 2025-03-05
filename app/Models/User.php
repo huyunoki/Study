@@ -22,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany(Bookmark::class, 'user_id');
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
