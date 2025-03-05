@@ -32,5 +32,10 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+            function openModal() {
+                window.dispatchEvent(new CustomEvent('open-modal'));
+            }
+        </script>
     </body>
 </html>

@@ -87,7 +87,7 @@
   </div>
 
   <!-- モーダル -->
-  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" 
+  <div id="category-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" 
     x-data="{ open: false }" 
     x-show="open" 
     x-on:open-modal.window="open = true" 
