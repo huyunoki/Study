@@ -15,4 +15,9 @@ class CategoryController extends Controller
         $category->save();
         return redirect('/places/create');
     }
+
+    public function create()
+    {
+        return view('categories/create');
+    }
 }

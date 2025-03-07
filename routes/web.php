@@ -33,11 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/places/create', [PlaceController::class, 'create']);
     Route::post('/places/store', [PlaceController::class, 'store']);
     Route::get('/places/{id}', [PlaceController::class, 'show'])->name('markdown.show');
-    Route::get('/places/{id}/edit',[PlaceController::class,'edit']);
-    Route::put('/places/{id}/update',[PlaceController::class,'update']);
-    Route::delete('/places/{id}/delete',[PlaceController::class,'delete']);
-    
-    Route::post('place/category',[CategoryController::class,'store'])->name('categories.store');
+    Route::get('/places/{id}/edit', [PlaceController::class, 'edit']);
+    Route::put('/places/{id}/update', [PlaceController::class, 'update']);
+    Route::delete('/places/{id}/delete', [PlaceController::class, 'delete']);
+
+    Route::post('/category', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.show');
 
     Route::post('/places/{id}/bookmark', [BookmarkController::class, 'store']);
     Route::delete('/places/{id}/bookmark', [BookmarkController::class, 'destroy']);
