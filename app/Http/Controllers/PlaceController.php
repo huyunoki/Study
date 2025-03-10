@@ -100,7 +100,7 @@ class PlaceController extends Controller
 
         // dd($place);
 
-        return view('places.edit', compact('place','categories'));
+        return view('places.edit', compact('place'));
     }
 
     public function update(Request $request, $id)

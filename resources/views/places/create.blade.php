@@ -22,13 +22,13 @@
               <!-- カテゴリ -->
               <div class="w-1/3">
                 <label for="category" class="block text-gray-700 font-semibold">📂 カテゴリ</label>
-                <select name="category" class="w-full border px-3 py-2 rounded" x-data x-on:change="if ($el.value === 'new') { $dispatch('open-modal'); $el.value = '' }">
-                <option value="">📂 すべて</option>
-                <option value="new">🎈 新規作成</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-              </select>
+                <select name="place[category_id]" class="w-full border px-3 py-2 rounded" x-data x-on:change="if ($el.value === 'new') { $dispatch('open-modal'); $el.value = '' }">
+                  <option value="">📂 すべて</option>
+                  <option value="new">🎈 新規作成</option>
+                  @foreach($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+                </select>
               </div>
 
               <!-- 学習日 -->
@@ -82,36 +82,36 @@
   </div>
 
   <!-- モーダル -->
-  <div id="category-modal" 
+  <div id="category-modal"
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-    x-data="{ open: false }" 
-    x-show="open" 
-    x-on:open-modal.window="open = true" 
+    x-data="{ open: false }"
+    x-show="open"
+    x-on:open-modal.window="open = true"
     x-on:click.away="open = false"
     x-transition.opacity.duration.300ms
     style="display: none;">
 
     <div class="bg-white rounded-lg shadow-lg w-96 p-6">
-        <h2 class="text-lg font-bold text-gray-700">カテゴリを追加</h2>
+      <h2 class="text-lg font-bold text-gray-700">カテゴリを追加</h2>
 
-        <form method="POST" action="{{ route('categories.store') }}">
-            @csrf  
-            <input type="text" name="name" class="border px-3 py-2 rounded w-full mt-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                placeholder="カテゴリ名" required>
+      <form method="POST" action="{{ route('categories.store') }}">
+        @csrf
+        <input type="text" name="name" class="border px-3 py-2 rounded w-full mt-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="カテゴリ名" required>
 
-            <div class="flex justify-end space-x-2 mt-4">
-                <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" 
-                    x-on:click="open = false">
-                    キャンセル
-                </button>
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                    x-on:click="open = false">
-                    追加
-                </button>
-            </div>
-        </form>
+        <div class="flex justify-end space-x-2 mt-4">
+          <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+            x-on:click="open = false">
+            キャンセル
+          </button>
+          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            x-on:click="open = false">
+            追加
+          </button>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 
 
 
