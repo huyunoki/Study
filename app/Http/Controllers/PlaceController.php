@@ -17,7 +17,7 @@ class PlaceController extends Controller
     public function index(Place $place, Bookmark $bookmark, Category $category, Request $request)
     {
         $user = \Auth::user();
-        
+
         // ログインユーザーの投稿のみ取得
         $query = $user->places();
 
@@ -55,7 +55,7 @@ class PlaceController extends Controller
         $places = $query->get();
 
         // カテゴリリストを取得（フォーム用）
-        $categories =$user->categories()->get();
+        $categories = $user->categories()->get();
 
         return view('places.index', compact('places', 'exists', 'categories'));
     }
@@ -65,7 +65,7 @@ class PlaceController extends Controller
     public function create(Category $category)
     {
         $user = \Auth::user();
-        $categories =$user->categories()->get();
+        $categories = $user->categories()->get();
         return view('places.create', compact('categories'));
     }
 
@@ -91,9 +91,16 @@ class PlaceController extends Controller
 
     public function edit($id)
     {
+        $user=\Auth::user();
+
         $place = Place::find($id);
+
+        // カテゴリリストを取得（フォーム用）
+        $categories = $user->categories()->get();
+
         // dd($place);
-        return view('places.edit',compact('place'));
+
+        return view('places.edit', compact('place','categories'));
     }
 
     public function update(Request $request, $id)
@@ -109,7 +116,7 @@ class PlaceController extends Controller
 
     public function delete($id)
     {
-        $place=Place::find($id);
+        $place = Place::find($id);
         $place->delete();
 
         return redirect('/place');
