@@ -27,7 +27,7 @@
               <!-- カテゴリ -->
               <div class="w-1/3">
                 <label for="category" class="block text-gray-700 font-semibold">📂 カテゴリ</label>
-                <select name="category" class="w-full border px-3 py-2 rounded" x-data x-on:change="if ($el.value === 'new') { $dispatch('open-modal'); $el.value = '' }">
+                <select name="place[category_id]" class="w-full border px-3 py-2 rounded" x-data x-on:change="if ($el.value === 'new') { $dispatch('open-modal'); $el.value = '' }">
                   <option value="">📂 すべて</option>
                   <option value="new">🎈 新規作成</option>
                   @foreach($categories as $category)

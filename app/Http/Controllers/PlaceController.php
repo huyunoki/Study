@@ -8,7 +8,6 @@ use App\Models\Bookmark;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Http\PlaceRequest;
 use League\CommonMark\CommonMarkConverter;
 
 class PlaceController extends Controller
@@ -69,11 +68,12 @@ class PlaceController extends Controller
         return view('places.create', compact('categories'));
     }
 
-    public function store(Request $repuest, Place $place)
+    public function store(Request $request, Place $place)
     {
         // dd($repuest);
-        $input = $repuest['place'];
+        $input = $request['place'];
         $place->user_id = Auth::id();
+
         $place->fill($input)->save();
         return redirect('/place');
     }
@@ -91,16 +91,13 @@ class PlaceController extends Controller
 
     public function edit($id)
     {
-        $user=\Auth::user();
-
         $place = Place::find($id);
 
-        // カテゴリリストを取得（フォーム用）
+        $user = \Auth::user();
+
         $categories = $user->categories()->get();
 
-        // dd($place);
-
-        return view('places.edit', compact('place'));
+        return view('places.edit', compact('place', 'categories'));
     }
 
     public function update(Request $request, $id)
