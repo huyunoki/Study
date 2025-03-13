@@ -91,8 +91,15 @@ class PlaceController extends Controller
 
     public function edit($id)
     {
+        $user=\Auth::user();
+
         $place = Place::find($id);
+
+        // カテゴリリストを取得（フォーム用）
+        $categories = $user->categories()->get();
+
         // dd($place);
+
         return view('places.edit', compact('place'));
     }
 
