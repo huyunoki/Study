@@ -3,33 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Place;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         return view("calendars/calendar");
     }
 
-    public function create(Request $request, Event $event){
-        // バリデーション（eventsテーブルの中でNULLを許容していないものをrequired）
+    public function get(Request $request)
+    {
         $request->validate([
-            'event_title' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'event_color' => 'required',
+            'start_date' => 'required|numeric',
         ]);
 
-        // 登録処理
-        $event->event_title = $request->input('event_title');
-        $event->event_body = $request->input('event_body');
-        $event->start_date = $request->input('start_date');
-        $event->end_date = date("Y-m-d", strtotime("{$request->input('end_date')} +1 day")); // FullCalendarが登録する終了日は仕様で1日ずれるので、その修正を行っている
-        $event->event_color = $request->input('event_color');
-        $event->event_border_color = $request->input('event_color');
-        $event->save();
+        // `start_date` を `YYYY-MM-DD` に変換
+        $start_date = Carbon::createFromTimestampMs($request->input('start_date'))->toDateString();
 
-        // カレンダー表示画面にリダイレクトする
-        return redirect(route("show"));
+        // ログインユーザーの `places` からデータを取得
+        $places = Auth::user()->places()
+            ->whereDate('study_date', '>=', $start_date) // `study_date` を基準に検索
+            ->select('id', 'title', 'study_date as start') // FullCalendar に適した形式に変更
+            ->get();
+
+        return response()->json($places);
     }
 }
