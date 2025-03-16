@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookMarkController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/places/{id}/bookmark', [BookmarkController::class, 'store']);
     Route::delete('/places/{id}/bookmark', [BookmarkController::class, 'destroy']);
+
+    Route::get('/calendar', [EventController::class, 'show'])->name("calendar.show");
+    Route::post('/calendar/create', [EventController::class, 'create'])->name("calendar.create");
 });
 
 require __DIR__ . '/auth.php';

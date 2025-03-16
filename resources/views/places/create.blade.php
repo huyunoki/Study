@@ -80,11 +80,5 @@
       </div>
     </div>
   </div>
-
-
-
-
-
 </x-app-layout>
 <!-- マークダウン変換用のスクリプト -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
