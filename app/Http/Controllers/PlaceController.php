@@ -34,14 +34,14 @@ class PlaceController extends Controller
 
         // ソート処理
         if (empty($sort)) {
-            $query->orderBy('created_at', 'desc'); // デフォルトを最新順
+            $query->orderBy('study_date', 'desc'); // デフォルトを最新順
         } else {
             switch ($sort) {
                 case "1":
-                    $query->orderBy('created_at', 'desc'); // 最新順
+                    $query->orderBy('study_date', 'desc'); // 最新順
                     break;
                 case "2":
-                    $query->orderBy('created_at', 'asc'); // 古い順
+                    $query->orderBy('study_date', 'asc'); // 古い順
                     break;
                 case "3":
                     $query->orderBy('title', 'asc'); // タイトル順
