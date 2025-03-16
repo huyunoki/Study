@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="container">
@@ -57,7 +58,7 @@
         </form>
         <div class="register-link">
             <p>Don't have an account?</p>
-            <a href='/register' style="font-weight: bold;">［新規登録はこちら］</a>
+            <a href="{{ route('register') }}" style="font-weight: bold;">［新規登録はこちら］</a>
         </div>
     </div>
 </body>

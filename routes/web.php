@@ -20,7 +20,6 @@ use App\Http\Controllers\BookMarkController;
 Route::get('/', function () {
     return view('auth.login');
 });
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/place', [PlaceController::class, 'index'])->name('dashboard');
