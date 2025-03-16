@@ -14,7 +14,7 @@
         <!-- カテゴリーフィルター -->
         <select name="category" class="border px-2 py-1 rounded bg-white text-sm">
           <option value="">📂 すべて</option>
-        
+
           @foreach($categories as $category)
           <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
@@ -41,9 +41,9 @@
           <a href="/places/{{ $place->id }}" class="text-sm font-semibold text-blue-600 hover:underline">
             {{ $place->title }}
           </a>
-          <p class="text-xs text-gray-500">📅 {{ $place->created_at->format('Y-m-d') }}</p>
+          <p class="text-xs text-gray-500">📅 {{ $place->study_date }}</p>
         </div>
-        
+
         <div class="flex flex-col items-end space-y-1">
           @if (in_array($place->id, $exists))
           <form action="/places/{{$place->id}}/bookmark" method="POST">
@@ -59,11 +59,11 @@
             <button type="submit" class="text-xs bg-green-500 text-white px-2 py-1 rounded">ブックマーク</button>
           </form>
           @endif
-          
+
           <div class="flex space-x-1">
             <!-- 編集ボタン -->
             <a href="/places/{{ $place->id }}/edit" class="text-xs bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600">編集</a>
-            
+
             <!-- 削除ボタン -->
             <form action="/places/{{ $place->id }}/delete" method="POST" onsubmit="return confirm('本当に削除しますか？');">
               @csrf
@@ -89,7 +89,7 @@
 
     </div>
 
-     
+
     <!-- ページネーション -->
     <div class="mt-2 flex justify-center space-x-1">
       <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">◀️ 前へ</button>
