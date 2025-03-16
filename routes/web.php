@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/places/{id}/bookmark', [BookmarkController::class, 'destroy']);
 
     Route::get('/calendar', [EventController::class, 'show'])->name("calendar.show");
-    Route::post('/calendar/create', [EventController::class, 'create'])->name("calendar.create");
+    Route::post('/calendar/get',  [EventController::class, 'get'])->name("calendar.get"); // DBに登録した予定を取得
 });
 
 require __DIR__ . '/auth.php';
