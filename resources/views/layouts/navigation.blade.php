@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('category.show', ['id' => Auth::user()->id])">
                         <span class="text-sm">{{ __('category') }}</span> <!-- ✅ 文字サイズ縮小 -->
                     </x-nav-link>
+                    <x-nav-link :href="route('calendar.show', ['id' => Auth::user()->id])">
+                        <span class="text-sm">{{ __('calendar') }}</span> <!-- ✅ 文字サイズ縮小 -->
+                    </x-nav-link>
                 </div>
             </div>
 
