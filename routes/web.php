@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/calendar', [EventController::class, 'show'])->name("calendar.show");
     Route::post('/calendar/get',  [EventController::class, 'get'])->name("calendar.get"); // DBに登録した予定を取得
+    Route::put('/calendar/update', [EventController::class, 'update'])->name("update");
 });
 
 require __DIR__ . '/auth.php';

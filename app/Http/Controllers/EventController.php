@@ -26,7 +26,7 @@ class EventController extends Controller
         // ログインユーザーの `places` からデータを取得
         $places = Auth::user()->places()
             ->whereDate('study_date', '>=', $start_date) // `study_date` を基準に検索
-            ->select('id', 'title', 'study_date as start') // FullCalendar に適した形式に変更
+            ->select('id', 'title', 'body','study_date as start') // FullCalendar に適した形式に変更
             ->get();
 
         return response()->json($places);
