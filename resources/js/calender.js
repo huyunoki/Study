@@ -6,6 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 // カレンダーを表示させたいタグのidを取得
 const calendarEl = document.getElementById("calendar");
 
+//カレンダー表示させる
 if (calendarEl) {
     const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, timeGridPlugin],
@@ -20,6 +21,7 @@ if (calendarEl) {
         events: function (info, successCallback, failureCallback) {
             const startDate = info.start.valueOf(); // タイムスタンプ (ミリ秒)
 
+            
             // ✅ 送信データを確認
             console.log("🚀 送信データ (start_date):", startDate);
 
@@ -42,12 +44,38 @@ if (calendarEl) {
                         "🚨 エラー: ",
                         error.response ? error.response.data : error
                     );
-
                     alert("登録に失敗しました。");
                 });
-        },
-    });
+            },
 
-    // カレンダーのレンダリング
-    calendar.render();
+            eventClick: function(info) {
+                const modal = document.getElementById('easyModal');
+                const buttonClose = document.getElementsByClassName('modalClose')[0];
+
+                // console.log(info.event); // info.event内に予定の全情報が入っているので、必要に応じて参照すること
+                document.getElementById("id").value = info.event.id;
+                document.getElementById("title").innerText = info.event.title;
+                // document.getElementById("body").innerText = info.event.extendedProps.body;
+
+                //項目をクリックした際のモーダル表示
+                modal.style.display = 'block';
+                
+                // バツ印がクリックされた時     
+                buttonClose.addEventListener('click', modalClose);
+                function modalClose() {
+                modal.style.display = 'none';
+                }
+
+                // モーダルコンテンツ以外がクリックされた時
+                addEventListener('click', outsideClose);
+                function outsideClose(e) {
+                if (e.target == modal) {
+                    modal.style.display = 'none';
+                }
+                }
+            },
+        });
+
+        // カレンダーのレンダリング
+        calendar.render();
 }

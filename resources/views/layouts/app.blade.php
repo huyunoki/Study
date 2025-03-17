@@ -68,9 +68,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
-        function openModal() {
-            window.dispatchEvent(new CustomEvent('open-modal'));
-        }
+        
     </script>
 </body>
 
