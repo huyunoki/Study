@@ -53,29 +53,37 @@ if (calendarEl) {
                 const buttonClose = document.getElementsByClassName('modalClose')[0];
 
                 // console.log(info.event); // info.event内に予定の全情報が入っているので、必要に応じて参照すること
-                document.getElementById("id").value = info.event.id;
                 document.getElementById("title").innerText = info.event.title;
-                // document.getElementById("body").innerText = info.event.extendedProps.body;
 
                 //項目をクリックした際のモーダル表示
-                modal.style.display = 'block';
+                // modal.style.display = 'block';
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
                 
                 // バツ印がクリックされた時     
                 buttonClose.addEventListener('click', modalClose);
                 function modalClose() {
-                modal.style.display = 'none';
+                    // modal.style.display = 'none';
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex"); // ← これも重要！
                 }
 
                 // モーダルコンテンツ以外がクリックされた時
                 addEventListener('click', outsideClose);
                 function outsideClose(e) {
-                if (e.target == modal) {
-                    modal.style.display = 'none';
+                    if (e.target == modal) {
+                        // modal.style.display = 'none';
+                        modal.classList.add("hidden");
+                        modal.classList.remove("flex"); // ← これも重要！
+                    }
                 }
-                }
-            },
-        });
 
+                // ボタンの href を更新
+                document.getElementById("openBtn").href = `/places/${info.event.id}`;
+                document.getElementById("editBtn").href = `/places/${info.event.id}/edit`;
+                document.getElementById("deleteBtn").href = `/places/${info.event.id}/delete`;
+            },
+        }); 
         // カレンダーのレンダリング
         calendar.render();
 }
