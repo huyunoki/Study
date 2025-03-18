@@ -56,14 +56,12 @@ if (calendarEl) {
                 document.getElementById("title").innerText = info.event.title;
 
                 //項目をクリックした際のモーダル表示
-                // modal.style.display = 'block';
                 modal.classList.remove("hidden");
                 modal.classList.add("flex");
                 
                 // バツ印がクリックされた時     
                 buttonClose.addEventListener('click', modalClose);
                 function modalClose() {
-                    // modal.style.display = 'none';
                     modal.classList.add("hidden");
                     modal.classList.remove("flex"); // ← これも重要！
                 }
@@ -72,16 +70,16 @@ if (calendarEl) {
                 addEventListener('click', outsideClose);
                 function outsideClose(e) {
                     if (e.target == modal) {
-                        // modal.style.display = 'none';
                         modal.classList.add("hidden");
                         modal.classList.remove("flex"); // ← これも重要！
                     }
                 }
 
                 // ボタンの href を更新
+                // console.log("Event ID:", info.event.id);
                 document.getElementById("openBtn").href = `/places/${info.event.id}`;
                 document.getElementById("editBtn").href = `/places/${info.event.id}/edit`;
-                document.getElementById("deleteBtn").href = `/places/${info.event.id}/delete`;
+                document.getElementById("deleteBtn").action = `/places/${info.event.id}/delete`;
             },
         }); 
         // カレンダーのレンダリング

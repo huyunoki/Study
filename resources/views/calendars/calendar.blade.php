@@ -7,6 +7,9 @@
     .animate-fadeIn {
         animation: fadeIn 0.3s ease-out;
     }
+    .fc-event {
+    cursor: pointer !important;
+}
 </style>
 
 <x-app-layout>
@@ -28,21 +31,24 @@
             <div class="p-2">
                 <!-- ボタン -->
                 <div class="flex justify-end space-x-2">
-                    <button id="openBtn"
-                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition"
+                    <a id="openBtn"
+                        class="text-xs bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600"
                         href="#">
                         開く
-                    </button>
-                    <button id="editBtn"
-                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition"
+                    </a>
+                    <a id="editBtn"
+                        class="text-xs bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600"
                         href="#">
                         編集
-                    </button>
-                    <button id="deleteBtn"
-                        class="bg-gray-500 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-600 transition"
-                        href="#">
+                    </a>
+                    <form  id="deleteBtn" action="#" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                        class="text-xs bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600">
                         削除
-                    </button>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
