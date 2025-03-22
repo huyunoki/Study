@@ -1,13 +1,6 @@
 <head>
    <!-- EasyMDE -->
-    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
     @vite(['resources/js/markdown.js'])
-    <style>
-      .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
-          background: transparent !important;
-      }
-    </style>
 </head>
 <x-app-layout>
   <div class="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-lg">
