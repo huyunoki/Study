@@ -74,19 +74,6 @@
         </div>
       </div>
       @endforeach
-      <div class="py-1">
-        <a href="#" class="text-sm font-semibold text-blue-600 hover:underline">
-          【デザイン】UI/UXの基本
-        </a>
-        <p class="text-xs text-gray-500">📅 2024-02-18</p>
-      </div>
-      <div class="py-1">
-        <a href="#" class="text-sm font-semibold text-blue-600 hover:underline">
-          【ライフスタイル】朝活のメリット
-        </a>
-        <p class="text-xs text-gray-500">📅 2024-02-15</p>
-      </div>
-
     </div>
 
 
