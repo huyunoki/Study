@@ -51,7 +51,7 @@ class PlaceController extends Controller
 
 
         // クエリ実行（ログインユーザーの投稿のみにフィルター適用）
-        $places = $query->get();
+        $places = $query->paginate(5);
 
         // カテゴリリストを取得（フォーム用）
         $categories = $user->categories()->get();

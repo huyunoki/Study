@@ -92,11 +92,12 @@
 
     <!-- ページネーション -->
     <div class="mt-2 flex justify-center space-x-1">
-      <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">◀️ 前へ</button>
+      {{ $places->links() }}
+      <!-- <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">◀️ 前へ</button>
       <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">1</button>
       <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">2</button>
       <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">3</button>
-      <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">次へ ▶️</button>
+      <button class="bg-gray-300 text-gray-700 px-2 py-1 text-sm rounded">次へ ▶️</button> -->
     </div>
   </div>
 
