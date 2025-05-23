@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // \URL::forceScheme('https');
-        // $this->app['request']->server->set('HTTPS', 'on');
+        if (config('app.env') !== 'local') {
+            // 本番環境などでは HTTPS を強制
+            URL::forceScheme('https');
+            $this->app['request']->server->set('HTTPS', 'on');
+        }
     }
 }
